@@ -87,6 +87,11 @@ Por fim, execute o script:
 python3 /etc/bind/scripts/dns-anatel.py
 ```
 
+#### 7. Crie o cron para rodar a cada 1 hora e reinicie o cron.
+```bash
+echo '0 * * * * root python3 /etc/bind/scripts/dns-anatel' >> /etc/crontab
+systemctl restart cron
+```
 ## Contribuições
 Se você deseja contribuir com este projeto, fique à vontade para fazer um fork e abrir pull requests com melhorias ou correções! 
 
