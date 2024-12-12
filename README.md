@@ -9,9 +9,9 @@ nano /etc/bind/named.conf.options
 
  options {
  //...
-     response-policy {
+     response-policy {<br/> 
        zone "rpz.zone" policy CNAME judicial.dominio.com;
-     };
+     };<br/> 
  //...
 
 # OU PARA LOCALHOST
