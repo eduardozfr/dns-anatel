@@ -51,7 +51,7 @@ mkdir /etc/bind/scripts
 # Acessando pasta
 cd /etc/bind/scripts
 
-#Baixando script
+# Baixando script
 wget https://raw.githubusercontent.com/telecomsp/dns-anatel/refs/heads/main/dns-anatel.py
 
 # Dar permissão para executar script 
