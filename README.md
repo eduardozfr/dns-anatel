@@ -1,34 +1,57 @@
 # dns-anatel
-Python Automation for RPZ (Response Policy Zone) Synchronization was developed to ensure that BIND9 DNS servers can automatically apply domain blocking policies as requested by ANATEL (National Telecommunications Agency).
 
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+Automação em Python para Sincronização de RPZ (Response Policy Zone), desenvolvida para garantir que servidores DNS BIND9 possam aplicar automaticamente as políticas de bloqueio de domínios conforme solicitado pela ANATEL (Agência Nacional de Telecomunicações).
 
+## Configuração
+
+#### 1. Configuração do BIND9
+
+#### Adicionar dentro de `options` para mandar para domínio ou localhost.
+
+Edite o arquivo `/etc/bind/named.conf.options`:
+
+```bash
 nano /etc/bind/named.conf.options
+```
 
-# Adicionar dentro de "options", para mandar para dominio ou localhost.
+Adicione a configuração de response-policy:
 
- options {
-  //...
-     response-policy {
-       zone "rpz.zone" policy CNAME judicial.dominio.com;
-     };
- //...
+Para domínio:
 
-# OU PARA LOCALHOST
-
+```bash
 options {
- //...
-     response-policy {
-       zone "rpz.zone" policy CNAME localhost;
-     };
-//...
+  //...
 
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+  response-policy {
+    zone "rpz.zone" policy CNAME judicial.dominio.com;
+  };
 
+  //...
+}
+```
+
+Adicione a configuração de response-policy:
+
+Para domínio:
+```bash
+options {
+  //...
+
+  response-policy {
+    zone "rpz.zone" policy CNAME localhost;
+  };
+
+  //...
+}
+```
+
+#### 2. Configuração de Zona no BIND9
+Edite o arquivo /etc/bind/named.conf.local:
+```bash
 nano /etc/bind/named.conf.local
-
-# Adicionar 
-
+```
+Adicione a configuração de zona:
+```bash
 zone "rpz.zone" {
     type master;
     file "/var/cache/bind/rpz/db.rpz.zone.hosts";
@@ -36,29 +59,39 @@ zone "rpz.zone" {
     allow-transfer { XXX.XXX.XXX; };
     also-notify { XXX.XXX.XXX; };
 };
+```
+Nota: Substitua XXX.XXX.XXX pelo IP do DNS Secundário.
 
-XXX.XXX.XXX = IP do DNS Secundário 
-
-RPZ
+#### 3. Criação de Pastas e Links
+Crie as pastas necessárias:
+```bash
 mkdir /var/cache/bind/rpz/
-
-Criar atalho RPZ
 ln -s /var/cache/bind/rpz/ /etc/bind/rpz
-
-# Criar pasta do script
 mkdir /etc/bind/scripts
-
-# Acessando pasta
+```
+#### 4. Baixando e Configurando o Script
+```bash
 cd /etc/bind/scripts
-
-# Baixando script
+```
+```bash
 wget https://raw.githubusercontent.com/telecomsp/dns-anatel/refs/heads/main/dns-anatel.py
-
-# Dar permissão para executar script 
-chmod +x /etc/bind/scripts/dns-anatel.py
-
-# Instalar python e dependencias 
+```
+#### 5. Instalar Dependências
+Instale o Python e as dependências necessárias:
+```bash
 apt install python3 python3-requests tree
-
-# Executar script 
+```
+#### 6. Executando o Script
+Por fim, execute o script:
+```bash
 python3 /etc/bind/scripts/dns-anatel.py
+```
+
+## Contribuições
+Se você deseja contribuir com este projeto, fique à vontade para fazer um fork e abrir pull requests com melhorias ou correções! 
+
+Licença
+Este projeto está licenciado sob a Licença MIT.
+```bash
+Esse conteúdo está formatado corretamente para o GitHub, com seções e código bem organizados. A estrutura também segue boas práticas para facilitar a instalação e configuração do projeto.
+```
