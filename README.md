@@ -8,10 +8,10 @@ nano /etc/bind/named.conf.options
 # Adicionar dentro de "options", para mandar para dominio ou localhost.
 
  options {<br/> 
- <br/>//...
-     response-policy {<br/> 
-       <br/> zone "rpz.zone" policy CNAME judicial.dominio.com;
-     <br/> };
+  //...<br/> 
+     response-policy{<br/> 
+       zone "rpz.zone" policy CNAME judicial.dominio.com;<br/> 
+     <br/>};
  <br/>//...
 
 # OU PARA LOCALHOST
