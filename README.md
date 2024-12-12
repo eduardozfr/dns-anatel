@@ -60,5 +60,5 @@ chmod +x /etc/bind/scripts/dns-anatel.py
 # Instalar python e dependencias 
 apt install python3 python3-requests tree
 
-#Executar script 
+# Executar script 
 python3 /etc/bind/scripts/dns-anatel.py
