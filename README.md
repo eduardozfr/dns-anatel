@@ -69,12 +69,13 @@ mkdir /var/cache/bind/rpz/
 ln -s /var/cache/bind/rpz/ /etc/bind/rpz
 mkdir /etc/bind/scripts
 ```
-#### 4. Baixando e Configurando o Script
+#### 4. Baixando e Configurando o Script e dando permissão para executar. 
 ```bash
 cd /etc/bind/scripts
 ```
 ```bash
 wget https://raw.githubusercontent.com/telecomsp/dns-anatel/refs/heads/main/dns-anatel.py
+chmod +x /etc/bind/scripts/dns-anatel.py
 ```
 #### 5. Instalar Dependências
 Instale o Python e as dependências necessárias:
