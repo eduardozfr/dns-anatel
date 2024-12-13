@@ -78,7 +78,7 @@ mkdir /etc/bind/scripts
 cd /etc/bind/scripts
 ```
 ```bash
-wget https://raw.githubusercontent.com/telecomsp/dns-anatel/refs/heads/main/dns-anatel.py
+wget https://raw.githubusercontent.com/eduardozfr/dns-anatel/refs/heads/main/dns-anatel.py
 ```
 ```bash
 chmod +x /etc/bind/scripts/dns-anatel.py
