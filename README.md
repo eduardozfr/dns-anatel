@@ -66,7 +66,11 @@ Nota: Substitua `XXX.XXX.XXX` pelo IP do DNS Secundário.
 Crie as pastas necessárias:
 ```bash
 mkdir /var/cache/bind/rpz/
+```
+```bash
 ln -s /var/cache/bind/rpz/ /etc/bind/rpz
+```
+```bash
 mkdir /etc/bind/scripts
 ```
 #### 4. Baixando e Configurando o Script e dando permissão para executar. 
@@ -75,6 +79,8 @@ cd /etc/bind/scripts
 ```
 ```bash
 wget https://raw.githubusercontent.com/telecomsp/dns-anatel/refs/heads/main/dns-anatel.py
+```
+```bash
 chmod +x /etc/bind/scripts/dns-anatel.py
 ```
 #### 5. Instalar Dependências
@@ -91,6 +97,8 @@ python3 /etc/bind/scripts/dns-anatel.py
 #### 7. Crie o cron para ser executado todos os dias a meia noite.
 ```bash
 echo '00 00   * * *  root python3 /etc/bind/scripts/dns-anatel.py' >> /etc/crontab
+```
+```bash
 systemctl restart cron
 ```
 ## Contribuições
