@@ -14,9 +14,9 @@ Edite o arquivo `/etc/bind/named.conf.options`:
 nano /etc/bind/named.conf.options
 ```
 
-Adicione a configuração de response-policy:
+Adicione a configuração de `response-policy`:
 
-Para domínio:
+Para `domínio`:
 
 ```bash
 options {
@@ -30,9 +30,9 @@ options {
 }
 ```
 
-Adicione a configuração de response-policy:
+Adicione a configuração de `response-policy`:
 
-Para domínio:
+Para `localhost`:
 ```bash
 options {
   //...
@@ -46,7 +46,7 @@ options {
 ```
 
 #### 2. Configuração de Zona no BIND9
-Edite o arquivo /etc/bind/named.conf.local:
+Edite o arquivo `/etc/bind/named.conf.local`:
 ```bash
 nano /etc/bind/named.conf.local
 ```
@@ -60,7 +60,7 @@ zone "rpz.zone" {
     also-notify { XXX.XXX.XXX; };
 };
 ```
-Nota: Substitua XXX.XXX.XXX pelo IP do DNS Secundário.
+Nota: Substitua `XXX.XXX.XXX` pelo IP do DNS Secundário.
 
 #### 3. Criação de Pastas e Links
 Crie as pastas necessárias:
