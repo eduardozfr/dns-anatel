@@ -68,7 +68,7 @@ Crie as pastas necessárias:
 mkdir /var/cache/bind/rpz/
 ```
 ```bash
-ln -s /var/cache/bind/rpz/ /etc/bind/rpz
+ln -s /var/cache/bind/rpz /etc/bind/rpz
 ```
 ```bash
 mkdir /etc/bind/scripts
