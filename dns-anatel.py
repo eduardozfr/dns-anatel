@@ -49,6 +49,19 @@ def restart_bind_service():
         logging.error(f"Falha ao reiniciar o serviço Bind9: {e}")
         raise  # Levanta novamente a exceção para interromper a execução
 
+def test_dns_resolution():
+    """
+    Executa o comando 'dig uol.com @localhost' para testar a resolução DNS.
+    """
+    try:
+        result = subprocess.run(['dig', 'uol.com', '@localhost'], capture_output=True, text=True, check=True)
+        logging.info("Teste de resolução DNS concluído com sucesso.")
+        logging.info(f"Saída do comando:\n{result.stdout}")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Falha no teste de resolução DNS: {e}")
+        logging.error(f"Saída do erro:\n{e.stderr}")
+        raise
+
 if __name__ == "__main__":
     API_URL = "https://api.fiber.app.br/list_domains"
     RPZ_FILE = "/var/cache/bind/rpz/db.rpz.zone.hosts"
@@ -56,6 +69,7 @@ if __name__ == "__main__":
     try:
         create_rpz_zone_file(API_URL, RPZ_FILE)
         restart_bind_service()
+        test_dns_resolution()
 
     except Exception as e:
         logging.error(f"Erro crítico durante a execução do script: {e}")
